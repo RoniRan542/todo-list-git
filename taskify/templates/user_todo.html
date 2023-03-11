@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block title %}Taskify{% endblock %} {% block main%}
+<link rel="stylesheet" href="../static/index.css" />
+<script src="../static/todo.js"></script>
+<div class="container">
+  <div class="todo-list-main">
+    <h1 style="text-align: center">Your todo list {{user_name}}:</h1>
+    {% if tasks %}
+    <ul>
+      {% for task in tasks %}
+      <li class="todo-list-item">
+        <h6><b>{{task.name}}</b>:</h6>
+        {{ task.description }}
+      </li>
+      {% endfor %}
+    </ul>
+    {%endif%}
+    <div>
+      <label for="task">
+        <h6><b>Add task</b></h6>
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        id="name"
+        placeholder="enter title..."
+      />
+      <input
+        type="text"
+        class="form-control"
+        name="description"
+        id="desc"
+        placeholder="enter your task..."
+      />
+      <br />
+      <button
+        class="btn btn-primary btn-lg btn-block"
+        onclick="addTask(document.getElementById('name').value,document.getElementById('desc').value);"
+      >
+        Add task
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}

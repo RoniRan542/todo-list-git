@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Task Organizer</title>
+    <link rel="stylesheet" href="../static/index.css" />
+    <script src="../static/todo.js"></script>
+  </head>
+
+  <body>
+    {% extends 'base.html' %} {% block title %}Taskify{% endblock %} {% block
+    main%}
+
+    <section>
+    <div class="left-content">
+      <h2>Welcome to Task Organizer</h2>
+      <p>
+        This is a simple task organizer that helps you manage your daily tasks
+        effectively.
+      </p>
+
+      <p>
+        Task management is the process of managing a task through its lifecycle.
+        It involves planning, testing, tracking, and reporting. Task management
+        can help either individual achieve goals, or groups of individuals
+        collaborate and share knowledge for the accomplishment of collective
+        goals.Tasks are also differentiated by complexity, from low to
+        high.Effective task management requires managing all aspects of a task,
+        including its status, priority, time, human and financial-resources
+        assignments, recurrence, dependency, notifications,etc. These can be
+        lumped together broadly into the basic activities of task
+        management[from wikipedia].
+      </p>
+    </div>
+    <div class="right-content">
+      <div id="form-container" class="container">
+        <div class="card mb-4 shadow-sm" style="width: 18rem;">
+          <div class="card-header">
+            <h2 class="my-0 font-weight-normal text-center">Login</h2>
+          </div>
+          <div class="card-body">
+            
+              <label for="email">Enter your email address</label>
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                id="email"
+                value=""
+                required
+              />
+              <br />
+              <label for="password">Enter your password</label>
+              <input
+                type="text"
+                class="form-control"
+                name="password"
+                id="password"
+                value=""
+                required
+              />
+              <br />
+              <button class="btn btn-primary btn-lg btn-block" 
+              onclick="getCredentials(document.getElementById('email').value,document.getElementById('password').value)">
+                submit
+              </button>
+           
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endblock %}
+  </body>
+</html>

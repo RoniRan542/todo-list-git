@@ -1,0 +1,8 @@
+
+PythonAnywhere(pythonanywhere.com)
+DigitalOcean(digitalocean.com)
+Green-Unicorn(gunicorn.org)
+NGINX(nginx.org)
+
+
+Study more on Linux WebServices
