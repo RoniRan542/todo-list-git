@@ -1,4 +1,3 @@
-console.log("Working...");
 const getCredentials = async (email, password) => {
     const resp = await fetch(`login`, { 
           method: "POST",
@@ -58,7 +57,6 @@ const addTask = async (title, description) => {
 
 const deleteTask = async (task) => {
      // retrieve token and id form localStorage
-     console.log("task_id = " + task.id)
      const id = localStorage.getItem('user_id');
      const token = localStorage.getItem('jwt-token');
 
