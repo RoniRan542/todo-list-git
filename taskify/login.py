@@ -22,6 +22,7 @@ def login():
     user = User.query.filter_by(email=email, password=password).first()
     if user:
         access_token = create_access_token(identity=email)
+        
         return jsonify(message="login success",access_token=access_token, id=user.id, name=user.first_name)
     else:
         return jsonify(message="Bad email or password")

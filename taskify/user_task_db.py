@@ -42,7 +42,7 @@ class UserSchema(ma.Schema):
 
 class TaskSchema(ma.Schema):
     class Meta:
-        fields = ('task_id','name','description')
+        fields = ('id','name','description')
         
 
 user_schema = UserSchema()

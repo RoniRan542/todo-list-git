@@ -11,6 +11,12 @@
         <h6><b>{{task.name}}</b>:</h6>
         {{ task.description }}
       </li>
+      <button
+        class="btn-delete btn-primary"
+        onclick="deleteTask({{task|safe}})"
+      >
+        remove task
+      </button>
       {% endfor %}
     </ul>
     {%endif%}

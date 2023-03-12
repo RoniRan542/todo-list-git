@@ -49,11 +49,15 @@ def update_task(user_id:int):
 def delete_task(user_id:int):
     user = User.query.filter_by(id=user_id).first()
     if user:
-        task_id = int(request.form['task_id'])
+        task_id = int(request.args.get('task_id'))
+        print(task_id)
         task = Task.query.filter_by(id=task_id).first()
         db.session.delete(task)
         db.session.commit()
-        return jsonify(delition="Item deleted")
+        result = []
+        for task in tasks_schema.dump(user.tasks):
+            result.append(task)
+        return render_template('user_todo.html', tasks=result)
     else:
         return jsonify(message="Delition failed")
     

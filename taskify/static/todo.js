@@ -1,6 +1,5 @@
 console.log("Working...");
 const getCredentials = async (email, password) => {
-    console.log("inside login " + email); 
     const resp = await fetch(`login`, { 
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -23,17 +22,10 @@ const getCredentials = async (email, password) => {
      console.log(data);
 
      loginResponse(data.name, data.id);
-     
-     return data
-}
+     }
 
 const loginResponse = (name, id) => {
-  const response = `
-            <h2> You are logged in ${name}! </h2>
-            <button class="btn btn-primary btn-lg btn-block" onclick="window.location.href = 'todo_list/${id}';"> Your todo-list </button>
-            `;
-  document.getElementById("form-container").innerHTML = response;
-  
+     window.location.href = `todo_list/${id}`;
 }
 
 const logout = () => {
@@ -61,5 +53,28 @@ const addTask = async (title, description) => {
      }
     
      console.log("task added successfully");
+     window.location.reload();
+}
+
+const deleteTask = async (task) => {
+     // retrieve token and id form localStorage
+     console.log("task_id = " + task.id)
+     const id = localStorage.getItem('user_id');
+     const token = localStorage.getItem('jwt-token');
+
+     const resp = await fetch(`/delete_task/${id}?task_id=${task.id}`, {
+        method: 'DELETE',
+        headers: { 
+          "Content-Type": "application/text",
+          "Authorization": `Bearer ${token}` // ⬅⬅⬅ authorization token
+        }
+     })
+     if(!resp.ok) throw Error("There was a problem in the login request")
+
+     else if(resp.status === 403){
+         throw Error("Missing or invalid token");
+     }
+    
+     console.log("task deleted successfully");
      window.location.reload();
 }
