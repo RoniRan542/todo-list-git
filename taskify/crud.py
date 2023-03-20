@@ -28,15 +28,15 @@ def add_task(user_id:int):
         
 
 
-@crud_bp.route('/update_task/<int:user_id>', methods=['POST','PUT'])
+@crud_bp.route('/edit_task/<int:user_id>', methods=['POST','PUT'])
 @jwt_required() # force the user to login in order to get a jwt token
-def update_task(user_id:int):
+def edit_task(user_id:int):
     user = User.query.filter_by(id=user_id).first()
     if user:
-        task_id = int(request.form['task_id'])
+        task_id = int(request.args.get('task_id'))
         task = Task.query.filter_by(id=task_id).first()
-        task.name = request.form['name']
-        task.description = request.form['description']
+        task.name = request.json['name']
+        task.description = request.json['description']
         db.session.commit()
         return jsonify(message="Task updated"),202
     else:

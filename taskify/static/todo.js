@@ -30,6 +30,7 @@ const loginResponse = (name, id) => {
 const logout = () => {
   localStorage.removeItem('jwt-token');
   localStorage.removeItem('user');
+  window.location.href = '/';
 }
 
 const addTask = async (title, description) => {
@@ -75,4 +76,36 @@ const deleteTask = async (task) => {
     
      console.log("task deleted successfully");
      window.location.reload();
+}
+
+const goRegister = () => {
+     console.log("Registering redirect");
+     fetch(`/register-page`, {
+        method: 'GET',
+        headers: { 
+          "Content-Type": "application/text",
+        }
+     }).then(console.log('redirecting to registration...'))
+}
+
+const editTask = async(task, title, content) => {
+     const id = localStorage.getItem('user_id');
+     const token = localStorage.getItem('jwt-token');
+
+     const resp = await fetch(`/edit_task/${id}?task_id=${task.id}`, {
+        method: 'PUT',
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}` // ⬅⬅⬅ authorization token
+        },
+        body: JSON.stringify({name: title, description: content })  
+     })
+     if(!resp.ok) throw Error("There was a problem in the login request")
+
+     else if(resp.status === 403){
+         throw Error("Missing or invalid token");
+     }
+    
+     console.log("task edited successfully");
+     // window.location.reload();
 }

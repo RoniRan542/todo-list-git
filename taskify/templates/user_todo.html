@@ -2,21 +2,38 @@
 <link rel="stylesheet" href="../static/index.css" />
 <script src="../static/todo.js"></script>
 <div class="container">
+  <div class="logout">
+    <button class="btn-danger btn-sm btn-block" onclick="logout()">
+      Logout
+    </button>
+  </div>
   <div class="todo-list-main">
-    <h1 style="text-align: center">Your todo list {{user_name}}:</h1>
     {% if tasks %}
     <ul>
       {% for task in tasks %}
-      <li class="todo-list-item">
-        <h6><b>{{task.name}}</b>:</h6>
-        {{ task.description }}
+      <li>
+        <div class="todo-list-item">
+          <div class="task-content">
+            <!--<h6><b>{{task.name}}</b>:</h6>-->
+            <textarea
+              name="task-content"
+              id="task-content {{task.id}}"
+              onBlur="editTask({{task|safe}}, '',document.getElementById('task-content {{task.id}}').value.trim());"
+            >
+{{task.description}}</textarea
+            >
+          </div>
+          <div class="task-buttons">
+            <button class="btn-edit btn-sm" onclick="">edit</button>
+            <button
+              class="btn-delete btn-sm"
+              onclick="deleteTask({{task|safe}})"
+            >
+              remove
+            </button>
+          </div>
+        </div>
       </li>
-      <button
-        class="btn-delete btn-primary"
-        onclick="deleteTask({{task|safe}})"
-      >
-        remove task
-      </button>
       {% endfor %}
     </ul>
     {%endif%}

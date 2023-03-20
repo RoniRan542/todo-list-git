@@ -8,7 +8,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-.container
+.container 
 {
   width: fit-content;
   max-width: 60%;
@@ -27,6 +27,9 @@ header {
   max-height: fit-content;
 }
 
+.header-one{
+  padding-top: 10px;
+}
 /* Style the navigation links */
 nav {
   overflow: hidden;
@@ -44,8 +47,7 @@ nav a {
 
 nav a:hover {
   text-decoration: none;
-  color: #f1f1f1;
-  font-weight: bold;
+  color: #000000;
   cursor: pointer;
 }
 
@@ -81,32 +83,87 @@ footer {
 }
 
 .todo-list-main {
-  padding: 30px;
-  width: 600px;
-  box-shadow: 0px 5px 10px rgb(97, 117, 124);
-  background-color: rgba(199, 175, 216, 0.9);
+  padding: 20px;
+  box-shadow: 0px 1px 5px rgb(97, 117, 124);
+  background-color: #115173;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .todo-list-item
 {
-  border: 1px solid #333;
-  border-radius: 10px;
+  display:flex;
   text-decoration: none;
-  padding: 10px;
-  padding-left: 15px;
-  padding-right: 20px;
-  margin: 5px;
-  box-shadow: 0px 5px 10px rgb(97, 117, 124);
-  background-color: aliceblue;
+  padding: 5px;
+  align-items:flex-start;
+  vertical-align: middle;
+  min-height: 40px;
 }
 
 ul {
   list-style-type: none;
-  padding-top: 20px;
+  padding-top: 5%;
   padding-left: 0;
   margin:0;
-  padding-bottom: 15%;
+  padding-bottom: 5%;
 }
 .todo-list-item:hover {
-  background-color: rgba(117, 193, 168, 0.6);
+  transform: translateY(-5px);
+  transition: 1s;
+}
+
+.btn-edit {
+    position: relative;
+    background-color: rgb(101, 42, 135);
+    font-size: 15px;
+    font-weight: 600;
+    color: #f1f1f1;
+    padding: 3px;
+    height: 30px;
+    margin-bottom: 5px;
+
+}
+
+.btn-delete {
+  position: relative;
+  background-color: rgb(213, 60, 60);
+  font-size: 15px;
+  font-weight: 600;
+  color: #f1f1f1;
+  padding: 3px;
+  height: 30px;
+
+} 
+
+.task-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100px;
+  align-items:stretch;
+  align-self: center;
+}
+
+.task-content {
+  
+  width: 70%;
+  height: 100%;
+  align-items: center;
+  text-align: left;
+  vertical-align: top;
+  display: table-row;    
+}
+
+textarea {
+  -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	width: 90%;
+  height: 100%;
+  padding: 5px;
+  font-size: small;
+  text-align: left;
+  text-align: justify;
 }
